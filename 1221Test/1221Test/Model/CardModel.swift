@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct Card: Identifiable {
+    let id = UUID()
+    let imageName: String
+    let name: String
+    let price: String
+    let description: String
+    let rating: Double
+    let reviewsCount: Int
+}
+

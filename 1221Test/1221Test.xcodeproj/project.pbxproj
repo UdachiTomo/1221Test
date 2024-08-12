@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		CEAA10782C6A291500C842C4 /* _221TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA10772C6A291500C842C4 /* _221TestApp.swift */; };
-		CEAA107A2C6A291500C842C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA10792C6A291500C842C4 /* ContentView.swift */; };
 		CEAA107C2C6A291600C842C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAA107B2C6A291600C842C4 /* Assets.xcassets */; };
 		CEAA107F2C6A291600C842C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAA107E2C6A291600C842C4 /* Preview Assets.xcassets */; };
+		CEAA10892C6A2DBA00C842C4 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA10882C6A2DBA00C842C4 /* CardModel.swift */; };
+		CEAA108B2C6A2E5C00C842C4 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */; };
+		CEAA108D2C6A309E00C842C4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA108C2C6A309E00C842C4 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CEAA10742C6A291500C842C4 /* 1221Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1221Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAA10772C6A291500C842C4 /* _221TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _221TestApp.swift; sourceTree = "<group>"; };
-		CEAA10792C6A291500C842C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEAA107B2C6A291600C842C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAA107E2C6A291600C842C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEAA10882C6A2DBA00C842C4 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		CEAA108C2C6A309E00C842C4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,10 @@
 		CEAA10762C6A291500C842C4 /* 1221Test */ = {
 			isa = PBXGroup;
 			children = (
+				CEAA10872C6A2DA900C842C4 /* ViewModel */,
+				CEAA10862C6A2DA500C842C4 /* View */,
+				CEAA10852C6A2DA000C842C4 /* Model */,
 				CEAA10772C6A291500C842C4 /* _221TestApp.swift */,
-				CEAA10792C6A291500C842C4 /* ContentView.swift */,
 				CEAA107B2C6A291600C842C4 /* Assets.xcassets */,
 				CEAA107D2C6A291600C842C4 /* Preview Content */,
 			);
@@ -65,6 +71,30 @@
 				CEAA107E2C6A291600C842C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEAA10852C6A2DA000C842C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEAA10882C6A2DBA00C842C4 /* CardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEAA10862C6A2DA500C842C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEAA108C2C6A309E00C842C4 /* CardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEAA10872C6A2DA900C842C4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAA107A2C6A291500C842C4 /* ContentView.swift in Sources */,
+				CEAA108B2C6A2E5C00C842C4 /* CardViewModel.swift in Sources */,
 				CEAA10782C6A291500C842C4 /* _221TestApp.swift in Sources */,
+				CEAA108D2C6A309E00C842C4 /* CardView.swift in Sources */,
+				CEAA10892C6A2DBA00C842C4 /* CardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
