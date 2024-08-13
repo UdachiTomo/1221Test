@@ -20,27 +20,33 @@ struct CardView: View {
                     }) {
                         Image(isGridView ? "list" : "grind")
                             .padding()
+                            
                             .background(Color.gray.opacity(0.1))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
                     Spacer()
                 }
-                .padding()
+                .offset(x: 10)
+                Divider()
+                    .background(Color.gray)
+                
                 if isGridView {
-                    GridView()
+                    GridView(cards: $viewModel.cards)
                 } else {
-                    ListView()
+                    ListView(cards: $viewModel.cards)
+                        .listStyle(PlainListStyle())
                 }
             }
+            
         }
     }
 }
 
 struct ListView: View {
-    @StateObject var viewModel = CardViewModel()
+    @Binding var cards: [Card]
     var body: some View {
-        List($viewModel.cards) { $card in
+        List($cards) { $card in
             HStack(alignment: .center) {
                 Image(card.imageName)
                     .resizable()
@@ -132,8 +138,113 @@ struct ListView: View {
 }
 
 struct GridView: View {
+    @Binding var cards: [Card]
+    let columns: [GridItem] = [
+        GridItem(.flexible(),spacing: 2),
+        GridItem(.flexible(), spacing: 2)
+    ]
+    
     var body: some View {
-        Text("FFFFF")
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach($cards) { $card in
+                    VStack {
+                        Image(card.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(8)
+                        VStack {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    HStack(spacing: 2) {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                        Text("\(card.rating, specifier: "%.1f")")
+                                            .font(.system(size: 12))
+                                        HStack(spacing: 2) {
+                                            Text("| \(card.reviewsCount)")
+                                                .font(.system(size: 12))
+                                                .foregroundStyle(Color.gray)
+                                            Text("отзывов")
+                                                .font(.system(size: 12))
+                                                .foregroundStyle(Color.gray)
+                                        }
+                                        .lineLimit(1)
+                                        .fixedSize(horizontal: true, vertical: false)
+                                    }
+                                    VStack(alignment: .leading) {
+                                        Text(card.name)
+                                            .font(.system(size: 12))
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .padding(.top, 2)
+                                        Text(card.description)
+                                            .font(.system(size: 12))
+                                            .foregroundStyle(Color.gray)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                            .padding(.top, 2)
+                                    }
+                                }
+                                .frame(width: 140)
+                                VStack {
+                                    Button(action: {
+                                    }) {
+                                        Image(systemName: "heart")
+                                            .foregroundStyle(Color.gray)
+                                    }
+                                    .padding(.bottom, 8)
+                                    
+                                    Button(action: {
+                                        
+                                    }) {
+                                        Image(systemName: "list.bullet")
+                                            .foregroundStyle(Color.gray)
+                                    }
+                                }
+                                .padding(.bottom, 30)
+                            }
+                            Spacer()
+                            HStack() {
+                                VStack(alignment: .leading) {
+                                    if !card.isInCart {
+                                        HStack {
+                                            Text("\(card.price)")
+                                                .font(.system(size: 20))
+                                                .fontWeight(.semibold)
+                                                .lineLimit(1)
+                                                .fixedSize(horizontal: true, vertical: false)
+                                                .foregroundStyle(Color.black)
+                                            Image(.perAmount2)
+                                                .foregroundStyle(Color.black)
+                                        }
+                                        Text("\(card.oldPrice)")
+                                            .font(.system(size: 14))
+                                            .strikethrough()
+                                            .foregroundStyle(Color.gray)
+                                    }
+                                }
+                                Spacer()
+                                AddToCartButton(pricePerKg: 99.9, isInCart: $card.isInCart, unitType: $card.unitType)
+                                    .buttonStyle(PlainButtonStyle())
+                                    .contentShape(Rectangle())
+                                    .offset(x: -5)
+                            }
+                        }
+                        .padding()
+                        .frame(width: 182, height: 218, alignment: .center)
+                    }
+                    
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
+                    )
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+        }
     }
 }
 
@@ -190,7 +301,7 @@ struct AddToCartButton: View {
                             }
                             .padding(.trailing, 10)
                         }
-                        .frame(width: 170, height: 36, alignment: .center)
+                        .frame(width: 170, height: 36)
                         .background(Color.green)
                         .cornerRadius(15)
                     } else {
