@@ -12,8 +12,11 @@ struct Card: Identifiable {
     let imageName: String
     let name: String
     let price: String
+    let oldPrice: String
     let description: String
     let rating: Double
     let reviewsCount: Int
+    var unitType: UnitType = .pieces
+    var isInCart: Bool = false
 }
 
