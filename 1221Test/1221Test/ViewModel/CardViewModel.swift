@@ -10,9 +10,9 @@ import Combine
 
 class CardViewModel: ObservableObject {
     @Published var cards: [Card] = [
+        Card(imageName: "adrenalin", badgeType: .new, name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
         Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
-        Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
-        Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
+        Card(imageName: "adrenalin",badgeType: .sale, name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
              Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: true),
         Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
         Card(imageName: "adrenalin", name: "Энергетический Напиток AdrenaIine Rush 0,449л ж/б", price: "99 90", oldPrice: "199,0", description: "Франция", rating: 4.1, reviewsCount: 19, isInCart: false),
