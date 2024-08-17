@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct Card: Identifiable {
+struct Product: Identifiable {
     let id = UUID()
     let imageName: String
     var badgeType: BadgeType?
     let name: String
-    let price: String
+    var price: Double
     let oldPrice: String
     let description: String
     let rating: Double
@@ -20,6 +20,18 @@ struct Card: Identifiable {
     var unitType: UnitType = .pieces
     var isInCart: Bool = false
     var quantity: Double = 0.0
+    
+    var formattedPrice: String {
+            return String(format: "%.2f", price).replacingOccurrences(of: ".", with: " ")
+        }
+    
+    var formattedPriceWithSubText: (String, String) {
+            let components = formattedPrice.split(separator: " ")
+            if components.count == 2 {
+                return (String(components[0]), String(components[1]))
+            }
+            return (formattedPrice, "")
+        }
 }
 
 enum BadgeType {
@@ -48,5 +60,10 @@ enum BadgeType {
             return .green
         }
     }
+}
+
+enum UnitType {
+    case pieces
+    case kilograms
 }
 

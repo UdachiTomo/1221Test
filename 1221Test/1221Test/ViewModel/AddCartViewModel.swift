@@ -9,20 +9,40 @@ import SwiftUI
 import Combine
 
 class AddCartViewModel: ObservableObject {
-    @Published var isInCart: Bool = false
-    @Published var unitType: UnitType = .pieces
-    @Published var quantity: Double = 0.0
+    @Published var product: Product
     @Published var showUnitPicker: Bool = false
     
-    func addToCart() {
-        isInCart = true
-        showUnitPicker = true
-        quantity = unitType == .kilograms ? 0.5 : 1
+    init(product: Product) {
+        self.product = product
     }
     
-    func removeFromCart() {
-        isInCart = false
-        quantity = 0.0
-        showUnitPicker = false
-    }
+    func toggleCart() {
+            product.isInCart.toggle()
+            if product.isInCart {
+                showUnitPicker = true
+                product.quantity = product.unitType == .kilograms ? 0.5 : 1
+            } else {
+                showUnitPicker = false
+                product.quantity = 0
+            }
+        }
+        
+        func increaseQuantity() {
+            if product.unitType == .kilograms {
+                product.quantity += 0.5
+            } else {
+                product.quantity += 1
+            }
+        }
+        
+        func decreaseQuantity() {
+            if product.unitType == .kilograms && product.quantity > 0.5 {
+                product.quantity -= 0.5
+            } else if product.unitType == .pieces && product.quantity > 1 {
+                product.quantity -= 1
+            } else {
+                product.isInCart = false
+                product.quantity = 0
+            }
+        }
 }
