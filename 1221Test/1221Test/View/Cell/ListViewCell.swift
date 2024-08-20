@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ListViewCell: View {
     @EnvironmentObject var viewModel: CardViewModel
-    @State private var quantity: Double = 0.0
-    @State private var unitType: UnitType = .pieces
     @Binding var product: Product
     
     var body: some View {
@@ -90,7 +88,7 @@ struct ListViewCell: View {
                                 }
                             } else {
                                 VStack {
-                                    Picker("Unit Type", selection: $unitType) {
+                                    Picker("Unit Type", selection: $product.unitType) {
                                         Text("ШТ").tag(UnitType.pieces)
                                         Text("КГ").tag(UnitType.kilograms)
                                     }
@@ -99,19 +97,19 @@ struct ListViewCell: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            if unitType == .kilograms {
-                                                if quantity > 0.5 {
-                                                    quantity -= 0.5
+                                            if product.unitType == .kilograms {
+                                                if product.quantity > 0.5 {
+                                                    product.quantity -= 0.5
                                                 } else {
-                                                    product.isInCart = false
-                                                    quantity = 0.0
+                                                    viewModel.removeFromCart(product: product)
+                                                    product.quantity = 0.0
                                                 }
                                             } else {
-                                                if quantity > 1 {
-                                                    quantity -= 1
+                                                if product.quantity > 1 {
+                                                    product.quantity -= 1
                                                 } else {
-                                                    product.isInCart = false
-                                                    quantity = 0.0
+                                                    viewModel.removeFromCart(product: product)
+                                                    product.quantity = 0.0
                                                 }
                                             }
                                         }) {
@@ -125,12 +123,12 @@ struct ListViewCell: View {
                                         Spacer()
                                         
                                         VStack {
-                                            if unitType == .kilograms {
-                                                Text(String(format: "%.1f кг", quantity))
+                                            if product.unitType == .kilograms {
+                                                Text(String(format: "%.1f кг", product.quantity))
                                             } else {
-                                                Text(String(format: "%.0f шт", quantity))
+                                                Text(String(format: "%.0f шт", product.quantity))
                                             }
-                                            Text(String(format: "%.2f ₽", quantity * product.price))
+                                            Text(String(format: "%.2f ₽", product.quantity * product.price))
                                         }
                                         .font(.caption)
                                         .foregroundColor(.white)
@@ -138,10 +136,10 @@ struct ListViewCell: View {
                                         Spacer()
                                         
                                         Button(action: {
-                                            if unitType == .kilograms {
-                                                quantity += 0.5
+                                            if product.unitType == .kilograms {
+                                                product.quantity += 0.5
                                             } else {
-                                                quantity += 1
+                                                product.quantity += 1
                                             }
                                         }) {
                                             Image(systemName: "plus")
@@ -158,8 +156,11 @@ struct ListViewCell: View {
                             Spacer()
                             Button(action: {
                                 product.isInCart.toggle()
-                                if product.isInCart {
-                                    quantity = unitType == .kilograms ? 0.5 : 1
+                                if !product.isInCart {
+                                    viewModel.updateQuantity(product: product, quantity: product.quantity, unitType: product.unitType)
+                                   
+                                } else {
+                                    viewModel.addToCart(product: product)
                                 }
                             }) {
                                 if product.isInCart {
@@ -174,15 +175,14 @@ struct ListViewCell: View {
                                         .background(Color.green)
                                         .cornerRadius(20)
                                         .foregroundColor(.white)
+                                    
                                 }
                             }
                             .animation(.default, value: product.isInCart)
                         }
                         .padding(.leading, 2)
-                        
                     }
                     .padding(.top, 50)
-                    
                     .frame(height: 75)
                 }
                 .padding(.leading, 5)
@@ -222,7 +222,7 @@ struct ListViewCell_Previews: PreviewProvider {
         rating: 4.1,
         reviewsCount: 17
     )
-
+    
     static var previews: some View {
         ListViewCell(product: $previewProduct)
     }

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct GridViewCell: View {
     @EnvironmentObject var viewModel: CardViewModel
-    @State private var quantity: Double = 0.0
-    @State private var unitType: UnitType = .pieces
     @Binding var product: Product
     
     var body: some View {
@@ -90,7 +88,7 @@ struct GridViewCell: View {
                         }
                     } else {
                         VStack {
-                            Picker("Unit Type", selection: $unitType) {
+                            Picker("Unit Type", selection: $product.unitType) {
                                 Text("ШТ").tag(UnitType.pieces)
                                 Text("КГ").tag(UnitType.kilograms)
                             }
@@ -99,25 +97,24 @@ struct GridViewCell: View {
                             
                             HStack {
                                 Button(action: {
-                                    if unitType == .kilograms {
-                                        if quantity > 0.1 {
-                                            quantity -= 0.1
+                                    if product.unitType == .kilograms {
+                                        if product.quantity > 0.5 {
+                                            product.quantity -= 0.5
                                         } else {
-                                            product.isInCart = false
-                                            quantity = 0.0
+                                            viewModel.removeFromCart(product: product)
+                                            product.quantity = 0.0
                                         }
                                     } else {
-                                        if quantity > 1 {
-                                            quantity -= 1
+                                        if product.quantity > 1 {
+                                            product.quantity -= 1
                                         } else {
-                                            product.isInCart = false
-                                            quantity = 0.0
+                                            viewModel.removeFromCart(product: product)
+                                            product.quantity = 0.0
                                         }
                                     }
                                 }) {
                                     Image(systemName: "minus")
-                                        .resizable()
-                                        .frame(width: 12, height: 2)
+                                        .frame(width: 10)
                                         .foregroundColor(.white)
                                         .font(Font.system(.title2))
                                         .contentShape(Rectangle())
@@ -127,28 +124,27 @@ struct GridViewCell: View {
                                 Spacer()
                                 
                                 VStack {
-                                    if unitType == .kilograms {
-                                        Text(String(format: "%.1f кг", quantity))
+                                    if product.unitType == .kilograms {
+                                        Text(String(format: "%.1f кг", product.quantity))
                                     } else {
-                                        Text(String(format: "%.0f шт", quantity))
+                                        Text(String(format: "%.0f шт", product.quantity))
                                     }
-                                    Text(String(format: "%.2f ₽", quantity * product.price))
+                                    Text(String(format: "%.2f ₽", product.quantity * product.price))
                                 }
                                 .font(.caption)
                                 .foregroundColor(.white)
-                                
+
                                 Spacer()
                                 
                                 Button(action: {
-                                    if unitType == .kilograms {
-                                        quantity += 0.1
+                                    if product.unitType == .kilograms {
+                                        product.quantity += 0.5
                                     } else {
-                                        quantity += 1
+                                        product.quantity += 1
                                     }
                                 }) {
                                     Image(systemName: "plus")
-                                        .resizable()
-                                        .frame(width: 12, height: 12)
+                                        .frame(width: 10)
                                         .foregroundColor(.white)
                                         .font(Font.system(.title2))
                                         .padding(.trailing, 10)
@@ -162,8 +158,11 @@ struct GridViewCell: View {
                     Spacer()
                     Button(action: {
                         product.isInCart.toggle()
-                        if product.isInCart {
-                            quantity = unitType == .kilograms ? 0.1 : 1
+                        if !product.isInCart {
+                            viewModel.updateQuantity(product: product, quantity: product.quantity, unitType: product.unitType)
+                           
+                        } else {
+                            viewModel.addToCart(product: product)
                         }
                     }) {
                         if product.isInCart {

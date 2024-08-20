@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct CartStatusView: View {
+    @EnvironmentObject var cartViewModel: CardViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text("В корзине: \(cartViewModel.products.filter { $0.isInCart }.count) товаров")
+                .font(.headline)
+                .padding()
+            
+            Spacer()
+        }
+        .background(Color.yellow.opacity(0.3))
     }
 }
 

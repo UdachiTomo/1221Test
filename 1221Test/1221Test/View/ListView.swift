@@ -11,13 +11,15 @@ struct ListView: View {
     @EnvironmentObject var viewModel: CardViewModel
     var body: some View {
         List {
-            ForEach($viewModel.products, id: \.id) { $product in
+            ForEach($viewModel.products) { $product in
                 ListViewCell(product: $product)
                     
             }
             .buttonStyle(PlainButtonStyle())
+            .scrollIndicators(.hidden)
         }
     }
+    
 }
 
 
