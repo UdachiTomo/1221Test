@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var viewModel: CardViewModel
+    @EnvironmentObject var viewModel: ProductViewModel
     var body: some View {
         List {
             ForEach($viewModel.products) { $product in

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListViewCell: View {
-    @EnvironmentObject var viewModel: CardViewModel
+    @EnvironmentObject var viewModel: ProductViewModel
     @Binding var product: Product
     
     var body: some View {
@@ -190,15 +190,15 @@ struct ListViewCell: View {
                 VStack {
                     Button(action: {
                     }) {
-                        Image(systemName: "heart")
+                        Image(.productList)
                             .foregroundStyle(Color.gray)
                     }
                     .padding(.bottom, 8)
                     
                     Button(action: {
-                        
+                        viewModel.toggleFavorite(for: product)
                     }) {
-                        Image(systemName: "list.bullet")
+                        Image(product.isFavorite ? "productLikeFill" : "productLike")
                             .foregroundStyle(Color.gray)
                     }
                 }

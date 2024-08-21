@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct CardView: View {
-    @StateObject var viewModel: CardViewModel
-    @State private var isGridView: Bool = false
-    
+    @StateObject var viewModel: ProductViewModel
+
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
                     Button(action: {
-                        isGridView.toggle()
+                        viewModel.isGridView.toggle()
                     }) {
-                        Image(isGridView ? "list" : "grid")
+                        Image(viewModel.isGridView ? "list" : "grid")
                             .padding()
                             .frame(width: 45, height: 45)
                             .background(Color.gray.opacity(0.1))
@@ -28,11 +27,10 @@ struct CardView: View {
                     Spacer()
                 }
                 .offset(x: 10)
-                //CartStatusView()
                 Divider()
                     .background(Color.gray)
                 
-                if isGridView {
+                if viewModel.isGridView {
                     GridView()
                         .environmentObject(viewModel)
                 } else {

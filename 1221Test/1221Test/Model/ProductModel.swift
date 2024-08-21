@@ -20,6 +20,7 @@ struct Product: Identifiable {
     var unitType: UnitType = .pieces
     var isInCart: Bool = false
     var quantity: Double = 0.0
+    var isFavorite: Bool = false
     
     var formattedPrice: String {
             return String(format: "%.2f", price).replacingOccurrences(of: ".", with: " ")

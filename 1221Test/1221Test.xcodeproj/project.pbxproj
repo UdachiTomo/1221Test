@@ -14,12 +14,11 @@
 		CEAA107C2C6A291600C842C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAA107B2C6A291600C842C4 /* Assets.xcassets */; };
 		CEAA107F2C6A291600C842C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEAA107E2C6A291600C842C4 /* Preview Assets.xcassets */; };
 		CEAA10892C6A2DBA00C842C4 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA10882C6A2DBA00C842C4 /* ProductModel.swift */; };
-		CEAA108B2C6A2E5C00C842C4 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */; };
+		CEAA108B2C6A2E5C00C842C4 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA108A2C6A2E5C00C842C4 /* ProductViewModel.swift */; };
 		CEAA108D2C6A309E00C842C4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAA108C2C6A309E00C842C4 /* CardView.swift */; };
 		CEF6C9DC2C709A5700BC7EDF /* Extension + View.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C9DB2C709A5700BC7EDF /* Extension + View.swift */; };
 		CEF6C9DF2C70D32600BC7EDF /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C9DE2C70D32600BC7EDF /* ListViewCell.swift */; };
 		CEF6C9E12C70D79E00BC7EDF /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C9E02C70D79E00BC7EDF /* GridViewCell.swift */; };
-		CEF6C9E32C74F2E900BC7EDF /* CartStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6C9E22C74F2E900BC7EDF /* CartStatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,12 +30,11 @@
 		CEAA107B2C6A291600C842C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEAA107E2C6A291600C842C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CEAA10882C6A2DBA00C842C4 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
-		CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		CEAA108A2C6A2E5C00C842C4 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		CEAA108C2C6A309E00C842C4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CEF6C9DB2C709A5700BC7EDF /* Extension + View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + View.swift"; sourceTree = "<group>"; };
 		CEF6C9DE2C70D32600BC7EDF /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		CEF6C9E02C70D79E00BC7EDF /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
-		CEF6C9E22C74F2E900BC7EDF /* CartStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +102,6 @@
 				CE2A80102C6F86C10085072A /* GridView.swift */,
 				CE2A80162C6F89180085072A /* ListView.swift */,
 				CE2A80122C6F86E00085072A /* BadgeView.swift */,
-				CEF6C9E22C74F2E900BC7EDF /* CartStatusView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,7 +109,7 @@
 		CEAA10872C6A2DA900C842C4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CEAA108A2C6A2E5C00C842C4 /* CardViewModel.swift */,
+				CEAA108A2C6A2E5C00C842C4 /* ProductViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -213,13 +210,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF6C9DF2C70D32600BC7EDF /* ListViewCell.swift in Sources */,
-				CEAA108B2C6A2E5C00C842C4 /* CardViewModel.swift in Sources */,
+				CEAA108B2C6A2E5C00C842C4 /* ProductViewModel.swift in Sources */,
 				CEF6C9E12C70D79E00BC7EDF /* GridViewCell.swift in Sources */,
 				CE2A80132C6F86E00085072A /* BadgeView.swift in Sources */,
 				CEAA10782C6A291500C842C4 /* _221TestApp.swift in Sources */,
 				CEAA108D2C6A309E00C842C4 /* CardView.swift in Sources */,
 				CEF6C9DC2C709A5700BC7EDF /* Extension + View.swift in Sources */,
-				CEF6C9E32C74F2E900BC7EDF /* CartStatusView.swift in Sources */,
 				CE2A80172C6F89180085072A /* ListView.swift in Sources */,
 				CE2A80112C6F86C10085072A /* GridView.swift in Sources */,
 				CEAA10892C6A2DBA00C842C4 /* ProductModel.swift in Sources */,

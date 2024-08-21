@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct _221TestApp: App {
-    @StateObject private var viewModel = CardViewModel()
+    @StateObject private var viewModel = ProductViewModel()
     var body: some Scene {
         WindowGroup {
             CardView(viewModel: viewModel)

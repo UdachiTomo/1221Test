@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GridViewCell: View {
-    @EnvironmentObject var viewModel: CardViewModel
+    @EnvironmentObject var viewModel: ProductViewModel
     @Binding var product: Product
     
     var body: some View {
@@ -25,15 +25,19 @@ struct GridViewCell: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Button(action: {}) {
-                            Image(systemName: "heart")
+                        Button(action: {
+                            
+                        }) {
+                            Image(.productList)
                                 .foregroundColor(.gray)
                         }
                         .padding(.top, 10)
                         
-                        Button(action: {}) {
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(.gray)
+                        Button(action: {
+                            viewModel.toggleFavorite(for: product)
+                        }) {
+                            Image(product.isFavorite ? "productLikeFill" : "productLike")
+                                .foregroundStyle(Color.gray)
                         }
                         .padding(.top, 5)
                     }

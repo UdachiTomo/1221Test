@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct GridView: View {
-    @EnvironmentObject var viewModel: CardViewModel
-   
+    @EnvironmentObject var viewModel: ProductViewModel
+    
     let columns: [GridItem] = [
-        GridItem(.flexible() ,spacing: 4),
+        GridItem(.flexible(), spacing: 4),
         GridItem(.flexible(), spacing: 4)
     ]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            LazyVGrid(columns: columns) {
+            LazyVGrid(columns: columns, alignment: .center) {
                 ForEach($viewModel.products) { $product in
                     GridViewCell(product: $product)
-                        .padding(.horizontal, 5)
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, 6)
                 }
             }
         }
