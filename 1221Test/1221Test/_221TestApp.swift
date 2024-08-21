@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct _221TestApp: App {
+    @StateObject private var viewModel = ProductViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CardView(viewModel: viewModel)
+                .environmentObject(viewModel)
         }
     }
 }
